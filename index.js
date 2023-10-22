@@ -71,25 +71,13 @@
             }
         
             registrado() {
-<<<<<<< HEAD
-                console.log(`El usuario ${this.nombreUsuario} ha sido guardado correctamente`);
-=======
                 alert(`El usuario ${this.nombreUsuario} ha sido guardado correctamente`);
->>>>>>> 6d1cb1c (Se agrego iteracion sobre array)
             }
         }
 
 const persona1 = new Personas(nombreUsuario, edadUsuario, pesoUsuario, alturaUsuario);
 
 persona1.registrado();
-<<<<<<< HEAD
-console.log(persona1);
-
-let personasCreadas = [];
-personasCreadas.push(persona1);
-console.log(personasCreadas);
-let separacion = personasCreadas.join("-")
-=======
 // console.log(persona1);
 
 let personasCreadas = [ {nombreUsuario: 'Mario ', edadUsuario:50, pesoUsuario:75, alturaUsuario:180},
@@ -105,4 +93,3 @@ const avisoUsuariosNuevos = personasCreadas.map(persona => {
   
   console.log(avisoUsuariosNuevos);
   console.log("Ha sido un exito")
->>>>>>> 6d1cb1c (Se agrego iteracion sobre array)
