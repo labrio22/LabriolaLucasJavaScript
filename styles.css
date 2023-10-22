@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+}
+
+.contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.794);
+}
+fieldset{
+    background-color: rgba(0, 0, 0, 0.655);
+}
+
+form{
+    display:flex;    
+    flex-direction: column;
+}
+form input{
+margin: 0.6em;
+}
+h1{
+text-align: center;
+background-color: rgb(242, 255, 1);
+}
