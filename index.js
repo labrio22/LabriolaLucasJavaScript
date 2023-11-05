@@ -71,7 +71,7 @@
              
              // Calorias a comer segun tu metabolismo basal
              
-             if (nivelDeActividad === "moderad") {
+             if (nivelDeActividad === "moderada") {
                  let actividadModerada = (metabolismoBasalUsuario * 1.3)
                  console.log('Su calorias a consumir para mantener son ' + actividadModerada)
              
@@ -81,7 +81,7 @@
              
              } else if (nivelDeActividad === "fuerte") {
                  let actividadFuerte = (metabolismoBasalUsuario * 1.7)
-                 alert('Su calorias a consumir para mantener son ' + actividadFuerte)
+                 console.log('Su calorias a consumir para mantener son ' + actividadFuerte)
              
              } else {
                  console.log('Número incorrecto')
@@ -98,7 +98,7 @@
                         }
                     
                         registrado() {
-                            alert(`El usuario ${this.nombreValor} ha sido guardado correctamente`);
+                            console.log(`El usuario ${this.nombreValor} ha sido guardado correctamente`);
                         }
                     }
             
@@ -113,6 +113,8 @@
                                  ];
             
             personasCreadas.push(persona1);
+            /* MOSTRAR DATOS DE CADA PERSONA REGISTRADA POR SEPARADO
+            Y ADEMAS GUARDARLO EN LOCAL STORAGE PASANDO POR EL PROCESO DE CONVERSION EN JSON */
             const avisoUsuariosNuevos = personasCreadas.map(persona => {
                 return `Nombre: ${persona.nombreValor}, Edad: ${persona.edadValor}, Peso: ${persona.pesoValor}, Altura: ${persona.alturaValor}`;
             }).join('\n');
