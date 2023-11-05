@@ -1,95 +1,137 @@
-        function saludoUser(){
-            let nombreUsuario = prompt("Ingresa su nombre:")
-            alert('Bienvenido a la calculadora de Indice de Masa Muscular ' + nombreUsuario + ".")
-            return nombreUsuario;
-        }
-        
-        let nombreUsuario = saludoUser();
-         let edadUsuario = parseInt(prompt('Ingrese su edad'));
-         let pesoUsuario = parseFloat(prompt('Ingrese su peso en kilogramos'));
-         let alturaUsuario = parseFloat(prompt('Ingrese su altura en en centimetros'));
+        /* SE CREA FORMULARIO AL CLICKEAR 
+                    BOTON COMENZAR */
 
-         const cuentaImc = pesoUsuario / (alturaUsuario**2) *10000;
-        
-         alert('Su indice de masa muscular es de ' + parseInt(cuentaImc))
-        
-         if (cuentaImc > 25) {
-             alert('Su masa corporal esta excedida, cuidado!')
-         } else if (cuentaImc < 25) {
-             alert('Su masa corporal es la ideal, siga asi!!')
-         }
-        
-         // Metabolismo Basal Calculator
+        document.getElementById("empezar").addEventListener("click", function () {
+            let contenedorForm = document.createElement("form");
+            contenedorForm.innerHTML = `
+              <form action="" method="post">
+              <label for="nombre">Ingrese su nombre</label>
+              <input type="text" id="nombre" name="nombre">
+           
+              <label for="edad">Edad</label>
+              <input type="text" id="edad" name="edad">
+           
+              <label for="peso">Peso</label>
+              <input type="text" id="peso" name="peso">
+           
+              <label for="altura">Altura</label>
+              <input type="text" id="altura" name="altura">
+              <select name="genero" id="genero">
+                    <option value="escoger"> <selected>Elija una opción</selected></option>
+                    <option value="hombre">hombre</option>
+                    <option value="mujer">mujer</option>
+            </select>
+            <select name="nivelDeActividad" id="nivelDeActividad">
+                    <option value="nivelDeActividad"><selected>Elija una opción</selected></option>
+                    <option value="moderada">moderada</option>
+                    <option value="ligera">ligera</option>
+                    <option value="fuerte">fuerte</option>
+            </select>
+              </form>
+              <input id="botoncito1" type="submit" value="Enviar">
+              `;
+              document.body.appendChild(contenedorForm);
 
-         let sexo = prompt('¿Con que genero se identifica?')
-        
-        
-          while (sexo == "" || sexo == "") {
-              alert('Respuesta invalida')
-             //  prompt("Ingrese una respuesta valida")
-              sexo = (prompt("Ingresa una respuesta valida por favor. \'Hombre' o 'Mujer'\ "))
+              /* TRAIGO LOS INPUTS 
+              CON SUS RESPECTIVOS ID*/
 
-          }
-        
-         let metabolismoBasalUsuario;
+            document.getElementById("botoncito1").addEventListener("click", function (e) {
+                e.preventDefault();
+            let nombreValor = document.getElementById("nombre").value;
+            let edadValor = parseFloat(document.getElementById("edad").value);
+            let pesoValor = parseFloat(document.getElementById("peso").value);
+            let alturaValor = parseFloat(document.getElementById("altura").value);
+            let generoValor = document.getElementById("genero").value;
+            let nivelDeActividad = document.getElementById("nivelDeActividad").value;
 
-         if (sexo === 'hombre') {
-             metabolismoBasalUsuario = (10 * pesoUsuario) + (6.25 * alturaUsuario) - (5*edadUsuario) + 5
-             alert('Su metabolisimo basal es de ' + parseInt(metabolismoBasalUsuario) + ' calorias para mantener')
-         } else if (sexo === 'mujer') {
-             metabolismoBasalUsuario = (10 * pesoUsuario) + (6.25 * alturaUsuario) - (5*edadUsuario) - 161
-             alert('Su calorias de reposo son ' + parseInt(metabolismoBasalUsuario) + ' calorias para mantener')
-         }
-
-         // Calorias a comer segun tu metabolismo basal
-
-         let nivelDeActividad = parseInt(prompt('Indique su nivel de actividad según, 1 Moderada, 2 ligera o 3 fuerte'))
-
-         if (nivelDeActividad === 1) {
-             let actividadModerada = (metabolismoBasalUsuario * 1.3)
-             alert('Su calorias a consumir para mantener son ' + actividadModerada)
-         } else if (nivelDeActividad === 2) {
-             let actividadLigera =  (metabolismoBasalUsuario * 1.5)
-             alert('Su calorias a consumir para mantener son ' + actividadLigera)
-         } else if (nivelDeActividad === 3) {
-             let actividadFuerte = (metabolismoBasalUsuario * 1.7)
-             alert('Su calorias a consumir para mantener son ' + actividadFuerte)
-         } else {
-             prompt('Número incorrecto')
-        }
-
-
-
-// CREACION DE NUEVA PERSONA SEGUN DATOS INGRESADOS POR EL USUARIO
-
-        class Personas {
-            constructor(nombreUsuario, edadUsuario, pesoUsuario, alturaUsuario) {
-                this.nombreUsuario = nombreUsuario;
-                this.edadUsuario = edadUsuario;
-                this.pesoUsuario = pesoUsuario;
-                this.alturaUsuario = alturaUsuario;
+            // Metabolismo Basal Calculator
+            function cuentaImc(pesoValor, alturaValor){
+              let resultadoImc = pesoValor / (alturaValor**2);
+              return resultadoImc;
             }
+            let imc = cuentaImc(pesoValor,alturaValor);
         
-            registrado() {
-                alert(`El usuario ${this.nombreUsuario} ha sido guardado correctamente`);
-            }
-        }
+            console.log("Su indice de masa muscular es de " + imc)
+        
+             if (imc > 25) {
+                 console.log('Su masa corporal esta por encima, tenga cuidado!')
+             } else if (imc < 25) {
+                 console.log('Su masa corporal esta bien, mantengase asi!')
+             }
+             
+             let metabolismoBasalUsuario;
+             
+             if (generoValor === 'hombre') {
+                 metabolismoBasalUsuario = (10 * pesoValor) + (6.25 * alturaValor) - (5*edadValor) + 5
+                 console.log('Su metabolisimo basal es de ' + parseInt(metabolismoBasalUsuario) + ' calorias para mantener')
+             } else if (generoValor === 'mujer') {
+                 metabolismoBasalUsuario = (10 * pesoValor) + (6.25 * alturaValor) - (5*edadValor) - 161
+                 console.log('Su calorias de reposo son ' + parseInt(metabolismoBasalUsuario) + ' calorias para mantener')
+             }
+             
+             // Calorias a comer segun tu metabolismo basal
+             
+             if (nivelDeActividad === "moderad") {
+                 let actividadModerada = (metabolismoBasalUsuario * 1.3)
+                 console.log('Su calorias a consumir para mantener son ' + actividadModerada)
+             
+             } else if (nivelDeActividad === "ligera") {
+                 let actividadLigera =  (metabolismoBasalUsuario * 1.5)
+                 console.log('Su calorias a consumir para mantener son ' + actividadLigera)
+             
+             } else if (nivelDeActividad === "fuerte") {
+                 let actividadFuerte = (metabolismoBasalUsuario * 1.7)
+                 alert('Su calorias a consumir para mantener son ' + actividadFuerte)
+             
+             } else {
+                 console.log('Número incorrecto')
+             }
 
-const persona1 = new Personas(nombreUsuario, edadUsuario, pesoUsuario, alturaUsuario);
+             // CREACION DE NUEVA PERSONA SEGUN DATOS INGRESADOS POR EL USUARIO
+            
+                    class Personas {
+                        constructor(nombreValor, edadValor, pesoValor, alturaValor) {
+                            this.nombreValor = nombreValor;
+                            this.edadValor = edadValor;
+                            this.pesoValor = pesoValor;
+                            this.alturaValor = alturaValor;
+                        }
+                    
+                        registrado() {
+                            alert(`El usuario ${this.nombreValor} ha sido guardado correctamente`);
+                        }
+                    }
+            
+            const persona1 = new Personas(nombreValor , edadValor, pesoValor, alturaValor);
+            
+            persona1.registrado();
+            // console.log(persona1);
+            
+            let personasCreadas = [ {nombreValor: 'Mario ', edadValor:50, pesoValor:75, alturaValor:180},
+                                    {nombreValor: 'Juan ', edadValor:45, pesoValor:68, alturaValor:170},
+                                    {nombreValor: 'Jesus ', edadValor:19, pesoValor:71, alturaValor:190}
+                                 ];
+            
+            personasCreadas.push(persona1);
+            const avisoUsuariosNuevos = personasCreadas.map(persona => {
+                return `Nombre: ${persona.nombreValor}, Edad: ${persona.edadValor}, Peso: ${persona.pesoValor}, Altura: ${persona.alturaValor}`;
+            }).join('\n');
+            
+            personasCreadas.forEach((persona, x) => {
+                const claveUnica = `persona_${x}`;
+                localStorage.setItem(claveUnica, JSON.stringify(persona));
+            }); 
+            console.log(avisoUsuariosNuevos);
 
-persona1.registrado();
-// console.log(persona1);
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const personaData = JSON.parse(localStorage.getItem(key));
+                console.log(`Clave: ${key}, Datos:`, personaData);
+            }           
+              console.log("Ha sido un exito");
+        })
+        
+    })
+    
+    
 
-let personasCreadas = [ {nombreUsuario: 'Mario ', edadUsuario:50, pesoUsuario:75, alturaUsuario:180},
-                        {nombreUsuario: 'Juan ', edadUsuario:45, pesoUsuario:68, alturaUsuario:170},
-                        {nombreUsuario: 'Jesus ', edadUsuario:19, pesoUsuario:71, alturaUsuario:190}
-                     ];
-
-personasCreadas.push(persona1);
-
-const avisoUsuariosNuevos = personasCreadas.map(persona => {
-    return `Nombre: ${persona.nombreUsuario}, Edad: ${persona.edadUsuario}, Peso: ${persona.pesoUsuario}, Altura: ${persona.alturaUsuario}`;
-  }).join('\n');
-  
-  console.log(avisoUsuariosNuevos);
-  console.log("Ha sido un exito")
